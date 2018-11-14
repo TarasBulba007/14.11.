@@ -1,0 +1,35 @@
+<?php
+ 
+trait Trait1{                  //Объявляем первый трейт
+   private function number1($a){  //Метод принимает 1 аргумент
+         return $a = 1;
+    } 
+}
+  
+trait Trait2{                  //Объявляем второй трейт
+    private function number2($b){  //Метод принимает 1 аргумент
+         return $b = 2;
+    } 
+}
+
+trait Trait3{                  //Объявляем третий трейт
+    private function number3($c){  //Метод принимает 1 аргумент
+         return $b = 3;
+    } 
+}
+   
+class Test{
+  use  Trait1,  Trait2, Trait3{   //Реализуем трейты в классе
+  Trait1::number1 as public;
+  Trait2::number2 as public;
+  Trait3::number3 as public;
+    }
+  public function getSum(): int
+    {     
+      return $this->number1($a) + $this->number2($b) + $this->number3($c);
+    }
+}
+  
+$obj= new Test();          
+echo $obj->getSum();  
+?>
