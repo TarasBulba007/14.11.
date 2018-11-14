@@ -1,0 +1,35 @@
+trait Trait1{                  
+   private function number1($a){  
+         return $a = 1;
+    } 
+}
+  
+trait Trait2{                  
+    private function number2($b){  
+         return $b = 2;
+    } 
+}
+
+trait Trait3{                  
+  use Trait1, Trait2;  
+    private function number3($c){  
+         return $b = 3;
+    } 
+  public function sum(): int{
+      return $sum = $this->number1($a) + $this->number2($b) + $this->number3($c);
+    }
+  
+}
+
+
+class Test{                  
+  use Trait3;
+  
+  public function getSum(): int{
+      return $sum = $this->number1($a) + $this->number2($b) + $this->number3($c);
+    }
+}
+
+$obj = new Test();
+echo $obj->getSum();
+  
