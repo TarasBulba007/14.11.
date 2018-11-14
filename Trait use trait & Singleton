@@ -1,0 +1,74 @@
+trait Trait1{                  
+   private function number1($a){  
+         return $a = 1;
+    } 
+}
+  
+trait Trait2{                  
+    private function number2($b){  
+         return $b = 2;
+    } 
+}
+
+trait Trait3{                  
+  use Trait1, Trait2;  
+    private function number3($c){  
+         return $b = 3;
+    } 
+  public function sum(): int{
+      return $sum = $this->number1($a) + $this->number2($b) + $this->number3($c);
+    }
+  
+}
+
+
+class Test{                  
+  use Trait3;
+  
+  public function getSum(): int{
+      return $sum = $this->number1($a) + $this->number2($b) + $this->number3($c);
+    }
+}
+
+$obj = new Test();
+echo $obj->getSum();
+  
+
+ /*3адача 5:
+Паттерные проектирования (синглетон)
+Применить Singleton на примере создания соединения к базе данных MySQL. (любая арзитектора, нужно лишь понимание использования синглетона) 
+*/
+
+class BigData{
+  
+ private static $data = null;
+
+  private static BigData_HOST = '';
+  private static BigData_NAME = '';
+  private static BigData_USER = '';
+  private static BigData_PASS = '';
+
+   private function __construct (){
+
+  $this->data = new PDO(
+      'mysql:host=' . self::BigData_HOST . ';BigDataname=' . self::BigData_NAME,
+      self::BigData_USER,
+      self::BigData_PASS,
+      [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"]
+     );
+
+}
+
+   private function __clone (){
+      }
+   private function __wakeup (){
+      }
+
+   static fprivate nction getInstance(){
+  if (self::$data != null) {
+      return self::$data;
+}
+
+return new self;
+}
+}
